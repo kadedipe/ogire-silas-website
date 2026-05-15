@@ -5,6 +5,127 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Ogire Silas | Digital Creator – Full Cover Gallery</title>
 <link rel="stylesheet" href="style.css">
+<style>
+    .debug-panel {
+        background: #2c3e50;
+        color: #ecf0f1;
+        padding: 15px;
+        margin: 20px 0;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 12px;
+        text-align: left;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+    .debug-panel h4 {
+        margin: 0 0 10px 0;
+        color: #e67e22;
+    }
+    .debug-panel .success {
+        color: #2ecc71;
+    }
+    .debug-panel .error {
+        color: #e74c3c;
+    }
+    .toggle-debug {
+        background: #e67e22;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        font-size: 12px;
+    }
+    .toggle-debug:hover {
+        background: #d35400;
+    }
+    
+    /* FULL IMAGE DISPLAY - No cropping, full size */
+    .gallery-img {
+        width: 100%;
+        height: auto !important;
+        min-height: auto !important;
+        object-fit: contain !important;
+        background: #f4ede5;
+        display: block;
+    }
+    
+    .gallery-card {
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        box-shadow: 0 12px 24px -12px rgba(0,0,0,0.12);
+        border: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+    }
+    
+    /* Remove fixed aspect ratio to show full images */
+    .gallery-img {
+        aspect-ratio: auto !important;
+        max-height: none !important;
+    }
+    
+    /* Lightbox styles for full-screen viewing */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.95);
+        cursor: pointer;
+        overflow: auto;
+    }
+    
+    .lightbox-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+        margin-top: 5%;
+        object-fit: contain;
+    }
+    
+    .close-lightbox {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+        z-index: 1001;
+    }
+    
+    .close-lightbox:hover {
+        color: #e67e22;
+    }
+    
+    .lightbox-caption {
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+        padding: 10px;
+        background: rgba(0,0,0,0.7);
+    }
+    
+    .gallery-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+</style>
 </head>
 <body>
 
@@ -56,16 +177,23 @@
     </div>
 </section>
 
-<!-- EVENTS + FULL COVER GALLERY (70 images: cover-0.png to cover-69.png) -->
+<!-- EVENTS + FULL COVER GALLERY -->
 <section id="events" class="section">
     <h2>Upcoming Events & Cover Gallery</h2>
     <p style="margin-bottom: 0.5rem;">
         Join our LIVE Blockchain Class sessions where we explore world-class ecosystem trading opportunities.
     </p>
     
+    <button class="toggle-debug" id="toggleDebugBtn">🔧 Show/Hide Debug Info</button>
+    
+    <div id="debugPanel" class="debug-panel" style="display:none;">
+        <h4>📊 Image Loading Debug Info</h4>
+        <div id="debugLog"></div>
+    </div>
+    
     <div class="gallery-container" id="coverGalleryContainer">
         <div class="gallery-stats">
-            <span class="counter-badge" id="galleryCounter">Loading 70 covers...</span>
+            <span class="counter-badge" id="galleryCounter">Loading covers...</span>
             <span style="font-size:0.85rem;">📸 Complete visual collection (cover-0 to cover-69)</span>
         </div>
         <div class="gallery-grid" id="dynamicGalleryGrid"></div>
@@ -73,7 +201,8 @@
             <button class="btn-gallery" id="loadMoreBtn">Load More Covers</button>
         </div>
         <div class="event-note">
-            🎓 Full archive of training materials, event snapshots & ecosystem highlights — all 70 cover images from cover-0 to cover-69.
+            🎓 Full archive of training materials, event snapshots & ecosystem highlights<br>
+            💡 Click on any image to view in full size
         </div>
     </div>
 </section>
@@ -92,60 +221,207 @@
     <p>© 2026 Ogire Silas — All Rights Reserved | Digital Creator Ecosystem</p>
 </footer>
 
+<!-- Lightbox Modal -->
+<div id="lightbox" class="lightbox">
+    <span class="close-lightbox">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
 <script>
     (function() {
-        // TOTAL COVERS = 70 (cover-0.png through cover-69.png)
-        const TOTAL_COVERS = 70;
-        const IMAGES_PER_BATCH = 18; // Show 18 initially, then load more
+        // CONFIGURATION - EXACT FILE EXTENSIONS FOR ALL 70 IMAGES
+        const TOTAL_IMAGES = 70; // 0 to 69 = 70 images
+        
+        // Define EXACT extension for each image based on your file structure:
+        // cover-0.png, cover-1.png
+        // cover-2.jpg to cover-55.jpg
+        // cover-56.png to cover-68.png
+        // cover-69.jpg
+        function getImageExtension(index) {
+            // cover-0.png and cover-1.png
+            if (index === 0 || index === 1) {
+                return '.png';
+            }
+            // cover-2.jpg through cover-55.jpg
+            else if (index >= 2 && index <= 55) {
+                return '.jpg';
+            }
+            // cover-56.png through cover-68.png
+            else if (index >= 56 && index <= 68) {
+                return '.png';
+            }
+            // cover-69.jpg
+            else if (index === 69) {
+                return '.jpg';
+            }
+            // Fallback (should never reach here)
+            return '.jpg';
+        }
+        
+        const IMAGES_PER_BATCH = 20;
         let currentShown = 0;
         let allImageSources = [];
         let galleryGrid = document.getElementById('dynamicGalleryGrid');
         let loadMoreWrapper = document.getElementById('loadMoreWrapper');
         let loadMoreBtn = document.getElementById('loadMoreBtn');
         let counterSpan = document.getElementById('galleryCounter');
-
-        // Build image sources array for 70 images
-        // Pattern: images/cover-0.png, images/cover-1.png, ... images/cover-69.png
+        let debugPanel = document.getElementById('debugPanel');
+        let debugLog = document.getElementById('debugLog');
+        let toggleDebugBtn = document.getElementById('toggleDebugBtn');
+        
+        // Lightbox elements
+        let lightbox = document.getElementById('lightbox');
+        let lightboxImg = document.getElementById('lightbox-img');
+        let lightboxCaption = document.getElementById('lightbox-caption');
+        let closeLightbox = document.getElementsByClassName('close-lightbox')[0];
+        
+        // Track loaded/failed images
+        let imageStatus = {};
+        let debugMessages = [];
+        
+        function addDebugMessage(message, isError = false) {
+            const timestamp = new Date().toLocaleTimeString();
+            const prefix = isError ? '❌' : '✅';
+            const logMessage = `[${timestamp}] ${prefix} ${message}`;
+            debugMessages.push(logMessage);
+            if (debugLog) {
+                debugLog.innerHTML = debugMessages.map(msg => {
+                    const isErrorMsg = msg.includes('❌');
+                    return `<div class="${isErrorMsg ? 'error' : 'success'}">${msg}</div>`;
+                }).join('');
+                debugLog.scrollTop = debugLog.scrollHeight;
+            }
+            console.log(logMessage);
+        }
+        
+        // Toggle debug panel
+        if (toggleDebugBtn) {
+            toggleDebugBtn.addEventListener('click', () => {
+                if (debugPanel.style.display === 'none') {
+                    debugPanel.style.display = 'block';
+                    toggleDebugBtn.textContent = '🔧 Hide Debug Info';
+                } else {
+                    debugPanel.style.display = 'none';
+                    toggleDebugBtn.textContent = '🔧 Show/Hide Debug Info';
+                }
+            });
+        }
+        
+        // Build image sources with correct extensions
         function buildImageSources() {
             const sources = [];
-            
-            // Add cover-0.png through cover-69.png (70 images total)
-            for (let i = 0; i <= 69; i++) {
-                sources.push(`images/cover-${i}.png`);
+            for (let i = 0; i < TOTAL_IMAGES; i++) {
+                const extension = getImageExtension(i);
+                sources.push(`images/cover-${i}${extension}`);
             }
-            
             return sources;
         }
         
-        allImageSources = buildImageSources(); // 70 items total
+        allImageSources = buildImageSources();
+        addDebugMessage(`✅ Initialized ${TOTAL_IMAGES} images with EXACT file extensions:`);
+        addDebugMessage(`  📁 cover-0.png, cover-1.png (PNG)`);
+        addDebugMessage(`  📁 cover-2.jpg through cover-55.jpg (JPG)`);
+        addDebugMessage(`  📁 cover-56.png through cover-68.png (PNG)`);
+        addDebugMessage(`  📁 cover-69.jpg (JPG)`);
         
-        // Helper to create gallery card element with better error handling
+        // Function to check which images actually exist
+        function checkImageExistence() {
+            addDebugMessage("🔍 Starting image existence check...");
+            let checkedCount = 0;
+            let foundCount = 0;
+            
+            allImageSources.forEach((src, index) => {
+                const img = new Image();
+                img.onload = () => {
+                    checkedCount++;
+                    foundCount++;
+                    imageStatus[index] = true;
+                    addDebugMessage(`✅ cover-${index}${getImageExtension(index)} - LOADED (${img.naturalWidth}x${img.naturalHeight})`);
+                    if (checkedCount === TOTAL_IMAGES) {
+                        addDebugMessage(`🎉 SCAN COMPLETE: ${foundCount}/${TOTAL_IMAGES} images found successfully!`);
+                        if (foundCount < TOTAL_IMAGES) {
+                            addDebugMessage(`⚠️ Missing ${TOTAL_IMAGES - foundCount} image(s):`, true);
+                            for (let i = 0; i < TOTAL_IMAGES; i++) {
+                                if (!imageStatus[i]) {
+                                    addDebugMessage(`  ❌ cover-${i}${getImageExtension(i)} is MISSING`, true);
+                                }
+                            }
+                        }
+                    }
+                };
+                img.onerror = () => {
+                    checkedCount++;
+                    imageStatus[index] = false;
+                    addDebugMessage(`❌ cover-${index}${getImageExtension(index)} - FAILED to load`, true);
+                    if (checkedCount === TOTAL_IMAGES) {
+                        addDebugMessage(`⚠️ SCAN COMPLETE: Only ${foundCount}/${TOTAL_IMAGES} images found`, true);
+                    }
+                };
+                img.src = src;
+            });
+        }
+        
+        // Open lightbox
+        function openLightbox(imgSrc, caption) {
+            lightbox.style.display = "block";
+            lightboxImg.src = imgSrc;
+            lightboxCaption.textContent = caption;
+            document.body.style.overflow = "hidden";
+        }
+        
+        // Close lightbox
+        function closeLightboxFunc() {
+            lightbox.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+        
+        // Create gallery card with full-size images
         function createGalleryCard(imgSrc, index) {
             const cardDiv = document.createElement('div');
             cardDiv.className = 'gallery-card';
+            cardDiv.setAttribute('data-index', index);
             
             const img = document.createElement('img');
             img.className = 'gallery-img';
             img.loading = 'lazy';
             img.alt = `Cover ${index} - Ogire Silas Blockchain event`;
+            img.style.width = '100%';
+            img.style.height = 'auto';
+            img.style.display = 'block';
             
-            // Better error handling with fallback
-            img.onerror = function() {
-                if (!this.dataset.fallbackSet) {
-                    this.dataset.fallbackSet = 'true';
-                    this.style.objectFit = 'contain';
-                    this.style.background = 'linear-gradient(135deg, #f5e6d3, #e8d5c0)';
-                    this.style.padding = '20px';
-                    // Create a beautiful fallback with index number
-                    this.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0e2d4'/%3E%3Ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' fill='%23e67e22' font-size='28' font-weight='bold'%3E📷%3C/text%3E%3Ctext x='50%25' y='65%25' dominant-baseline='middle' text-anchor='middle' fill='%238b5a2b' font-size='16'%3ECover ${index}%3C/text%3E%3Ctext x='50%25' y='80%25' dominant-baseline='middle' text-anchor='middle' fill='%23a56b3a' font-size='11'%3E(Image not found)%3C/text%3E%3C/svg%3E`;
+            // Track individual image load status
+            img.onload = () => {
+                addDebugMessage(`🖼️ Gallery: cover-${index} displayed (${img.naturalWidth}x${img.naturalHeight})`);
+                if (imageStatus[index] === false) {
+                    imageStatus[index] = true;
                 }
+                updateCounter();
+            };
+            
+            img.onerror = () => {
+                addDebugMessage(`⚠️ Gallery: cover-${index} FAILED to display`, true);
+                if (!img.dataset.fallbackSet) {
+                    img.dataset.fallbackSet = 'true';
+                    img.style.objectFit = 'contain';
+                    img.style.background = 'linear-gradient(135deg, #f5e6d3, #e8d5c0)';
+                    img.style.padding = '40px';
+                    img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0e2d4'/%3E%3Ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' fill='%23e67e22' font-size='32' font-weight='bold'%3E📷%3C/text%3E%3Ctext x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' fill='%238b5a2b' font-size='20'%3ECover-${index}%3C/text%3E%3Ctext x='50%25' y='75%25' dominant-baseline='middle' text-anchor='middle' fill='%23a56b3a' font-size='14'%3E(File not found)%3C/text%3E%3C/svg%3E`;
+                }
+                updateCounter();
             };
             
             img.src = imgSrc;
             
             const caption = document.createElement('div');
             caption.className = 'img-caption';
-            caption.textContent = `📸 Cover-${index} · Blockchain Session`;
+            const extension = getImageExtension(index);
+            caption.textContent = `📸 cover-${index}${extension} · Click to enlarge`;
+            
+            // Add click event for lightbox
+            cardDiv.addEventListener('click', () => {
+                openLightbox(imgSrc, `Cover ${index} - Blockchain Session (${img.naturalWidth}x${img.naturalHeight})`);
+            });
             
             cardDiv.appendChild(img);
             cardDiv.appendChild(caption);
@@ -155,17 +431,22 @@
         // Render a batch of images
         function renderBatch(startIdx, endIdx) {
             const fragment = document.createDocumentFragment();
-            for (let i = startIdx; i < endIdx && i < allImageSources.length; i++) {
+            const end = Math.min(endIdx, allImageSources.length);
+            
+            addDebugMessage(`📦 Rendering batch: images ${startIdx} to ${end-1}`);
+            
+            for (let i = startIdx; i < end; i++) {
                 const card = createGalleryCard(allImageSources[i], i);
                 fragment.appendChild(card);
             }
+            
             galleryGrid.appendChild(fragment);
-            currentShown = Math.min(endIdx, allImageSources.length);
+            currentShown = end;
             updateCounter();
             
-            // Update load more button visibility
             if (currentShown >= allImageSources.length) {
                 loadMoreWrapper.style.display = 'none';
+                addDebugMessage(`✅ All images loaded! Total displayed: ${currentShown}`);
             } else {
                 loadMoreWrapper.style.display = 'flex';
             }
@@ -173,7 +454,14 @@
         
         function updateCounter() {
             if (counterSpan) {
-                counterSpan.textContent = `✨ ${currentShown} / ${TOTAL_COVERS} cover images displayed`;
+                let loadedCount = document.querySelectorAll('.gallery-card').length;
+                let successfulLoads = 0;
+                document.querySelectorAll('.gallery-img').forEach(img => {
+                    if (!img.src.includes('data:image/svg+xml') && img.complete && img.naturalHeight !== 0) {
+                        successfulLoads++;
+                    }
+                });
+                counterSpan.textContent = `✨ ${loadedCount} / ${TOTAL_IMAGES} covers (${successfulLoads} loaded)`;
             }
         }
         
@@ -181,9 +469,14 @@
         function initGallery() {
             galleryGrid.innerHTML = '';
             currentShown = 0;
-            renderBatch(0, Math.min(IMAGES_PER_BATCH, TOTAL_COVERS));
             
-            if (TOTAL_COVERS <= IMAGES_PER_BATCH) {
+            // Check all images first
+            checkImageExistence();
+            
+            // Render first batch
+            renderBatch(0, Math.min(IMAGES_PER_BATCH, TOTAL_IMAGES));
+            
+            if (TOTAL_IMAGES <= IMAGES_PER_BATCH) {
                 loadMoreWrapper.style.display = 'none';
             } else {
                 loadMoreWrapper.style.display = 'flex';
@@ -193,11 +486,11 @@
         // Load next batch
         function loadNextBatch() {
             let nextStart = currentShown;
-            let nextEnd = Math.min(currentShown + IMAGES_PER_BATCH, TOTAL_COVERS);
-            if (nextStart < TOTAL_COVERS) {
+            let nextEnd = Math.min(currentShown + IMAGES_PER_BATCH, TOTAL_IMAGES);
+            if (nextStart < TOTAL_IMAGES) {
                 renderBatch(nextStart, nextEnd);
             }
-            if (currentShown >= TOTAL_COVERS) {
+            if (currentShown >= TOTAL_IMAGES) {
                 loadMoreWrapper.style.display = 'none';
             }
         }
@@ -207,6 +500,24 @@
             loadMoreBtn.addEventListener('click', loadNextBatch);
         }
         
+        // Lightbox event listeners
+        if (closeLightbox) {
+            closeLightbox.addEventListener('click', closeLightboxFunc);
+        }
+        
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightboxFunc();
+            }
+        });
+        
+        // Close with escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.style.display === 'block') {
+                closeLightboxFunc();
+            }
+        });
+        
         // Initialize when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initGallery);
@@ -214,7 +525,13 @@
             initGallery();
         }
         
-        console.log(`Gallery initialized: ${TOTAL_COVERS} cover images (cover-0.png through cover-69.png)`);
+        // Also check console for any errors
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                addDebugMessage(`🌐 Browser error: Failed to load ${e.target.src}`, true);
+            }
+        });
+        
     })();
 </script>
 </body>

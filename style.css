@@ -249,11 +249,9 @@ header a:hover::after {
 
 .gallery-img {
     width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    display: block;
-    background: #f4ede5;
-    transition: transform 0.4s ease;
+    height: auto !important;        /* Natural height */
+    object-fit: contain !important;  /* No cropping */
+    aspect-ratio: auto !important;   /* Remove forced ratio */
 }
 
 .gallery-card:hover .gallery-img {
