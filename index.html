@@ -4,322 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Ogire Silas | Digital Creator – Full Cover Gallery</title>
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: system-ui, 'Segoe UI', 'Inter', 'Helvetica Neue', sans-serif;
-    background: #faf9f8;
-    color: #1e1e2a;
-    scroll-behavior: smooth;
-  }
-
-  /* NAVBAR */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 1.2rem 2rem;
-    background: rgba(255,255,245,0.96);
-    backdrop-filter: blur(8px);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.02);
-  }
-
-  header h2 {
-    font-size: 1.7rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #1f2b3c, #2c3e4e);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    letter-spacing: -0.3px;
-  }
-
-  nav {
-    display: flex;
-    gap: 2rem;
-  }
-
-  nav a {
-    text-decoration: none;
-    font-weight: 500;
-    color: #2c3e4e;
-    transition: 0.2s;
-    font-size: 1rem;
-  }
-
-  nav a:hover {
-    color: #e67e22;
-    border-bottom: 2px solid #e67e22;
-    padding-bottom: 4px;
-  }
-
-  /* HERO */
-  .hero {
-    text-align: center;
-    padding: 3rem 1.5rem 2rem;
-    background: linear-gradient(145deg, #ffffff 0%, #fef5e8 100%);
-  }
-
-  .profile {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-    margin-bottom: 1.2rem;
-  }
-
-  .hero h1 {
-    font-size: 2.3rem;
-    font-weight: 700;
-    color: #1f2b3c;
-  }
-
-  .hero p {
-    font-size: 1.2rem;
-    color: #5a6e7c;
-    margin-top: 0.5rem;
-  }
-
-  /* section base */
-  .section {
-    padding: 4rem 2rem;
-    max-width: 1280px;
-    margin: 0 auto;
-  }
-
-  .section h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    position: relative;
-    display: inline-block;
-  }
-  .section h2:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: #e67e22;
-    border-radius: 4px;
-  }
-
-  .dark {
-    background-color: #f2eee9;
-    border-radius: 2rem;
-    margin: 1rem auto;
-  }
-
-  /* about */
-  #about p {
-    font-size: 1.18rem;
-    line-height: 1.5;
-    max-width: 780px;
-    margin-bottom: 2rem;
-    color: #2c3e3f;
-  }
-
-  .cover {
-    width: 100%;
-    max-width: 900px;
-    border-radius: 28px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    display: block;
-    margin-top: 1rem;
-  }
-
-  /* services cards */
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-    margin-top: 1rem;
-  }
-
-  .card {
-    background: white;
-    padding: 2rem 1.8rem;
-    border-radius: 2rem;
-    flex: 1;
-    min-width: 240px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.03);
-    transition: all 0.25s ease;
-    border: 1px solid #efe6dd;
-  }
-
-  .card:hover {
-    transform: translateY(-6px);
-    border-color: #e67e2240;
-    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
-  }
-
-  .card h3 {
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #2c3e4e;
-  }
-
-  /* EVENTS SECTION - GALLERY FOR 85 COVERS */
-  .gallery-container {
-    margin-top: 2rem;
-  }
-
-  .gallery-stats {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid #ddd8cf;
-    padding-bottom: 0.8rem;
-  }
-
-  .counter-badge {
-    background: #e67e22;
-    color: white;
-    padding: 0.3rem 1rem;
-    border-radius: 60px;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.8rem;
-    margin: 2rem 0 1rem;
-  }
-
-  .gallery-card {
-    background: #ffffffdd;
-    backdrop-filter: blur(2px);
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: 1px solid #f0e4d8;
-  }
-
-  .gallery-card:hover {
-    transform: scale(1.01);
-    box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
-  }
-
-  .gallery-img {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    display: block;
-    background: #f5ede4;
-    transition: 0.2s;
-  }
-
-  .img-caption {
-    padding: 0.8rem 1rem;
-    background: white;
-    font-weight: 500;
-    color: #2c3e4e;
-    font-size: 0.85rem;
-    border-top: 1px solid #f0e0d0;
-    text-align: center;
-  }
-
-  .load-more-area {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0 1rem;
-  }
-
-  .btn-gallery {
-    background: #2c3e4e;
-    border: none;
-    padding: 0.8rem 2rem;
-    border-radius: 40px;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: 0.2s;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  }
-
-  .btn-gallery:hover {
-    background: #e67e22;
-    transform: translateY(-2px);
-  }
-
-  .event-note {
-    margin-top: 1.8rem;
-    background: #fcf7f0;
-    padding: 1rem 1.5rem;
-    border-radius: 60px;
-    text-align: center;
-    font-weight: 500;
-    color: #a5530e;
-  }
-
-  /* contact */
-  #contact {
-    text-align: center;
-    border-radius: 2rem;
-  }
-  #contact p {
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-  }
-  .btn {
-    display: inline-block;
-    margin-top: 1.5rem;
-    background: #e67e22;
-    color: white;
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    border-radius: 60px;
-    font-weight: 600;
-    transition: 0.2s;
-  }
-  .btn:hover {
-    background: #cf711f;
-    transform: scale(0.97);
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    color: #6c7a7e;
-    border-top: 1px solid #e2dbd2;
-    background: #fefcf9;
-    font-size: 0.85rem;
-  }
-
-  @media (max-width: 700px) {
-    header {
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-    .section {
-      padding: 2rem 1rem;
-    }
-    .hero h1 {
-      font-size: 1.8rem;
-    }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -336,7 +21,7 @@
 
 <!-- HERO SECTION -->
 <section class="hero">
-    <img src="images/profile.jpg" class="profile" alt="Ogire Silas profile" onerror="this.src='https://placehold.co/140x140?text=Silas'">
+    <img src="images/profile.jpg" class="profile" alt="Ogire Silas profile" onerror="this.src='https://placehold.co/180x180?text=Silas'">
     <h1>Ambassador Ogire Silas</h1>
     <p>Digital Creator | Blockchain Educator | Entrepreneur</p>
 </section>
@@ -349,8 +34,7 @@
         passionate about blockchain technology, digital education,
         and empowering communities through innovation and ecosystem trading opportunities.
     </p>
-    <!-- We'll keep the first cover as preview, but the GALLERY will display ALL 85 images -->
-    <img src="images/cover.png" class="cover" alt="cover preview" onerror="this.style.display='none'">
+    <img src="images/cover-0.png" class="cover" alt="cover preview" onerror="this.style.display='none'">
 </section>
 
 <!-- SERVICES -->
@@ -372,29 +56,24 @@
     </div>
 </section>
 
-<!-- EVENTS + FULL COVER GALLERY (85 images) -->
+<!-- EVENTS + FULL COVER GALLERY (70 images: cover-0.png to cover-69.png) -->
 <section id="events" class="section">
     <h2>Upcoming Events & Cover Gallery</h2>
     <p style="margin-bottom: 0.5rem;">
         Join our LIVE Blockchain Class sessions where we explore world-class ecosystem trading opportunities.
     </p>
-    <!-- GALLERY SECTION - dynamically displays all 85 cover.png images (cover1.png ... cover85.png) 
-         because you mentioned "I have 85 cover.png" - I assume naming pattern: cover.png, cover1.png ... cover84.png? 
-         But to be fully robust and capture exactly 85 distinct images, the script will generate covers from "cover.png"
-         up to "cover85.png" (total 85 files). If you have differently named (cover1.png to cover85.png) it's covered.
-         Also includes original cover.png as part of the set. -->
     
     <div class="gallery-container" id="coverGalleryContainer">
         <div class="gallery-stats">
-            <span class="counter-badge" id="galleryCounter">Loading 85 covers...</span>
-            <span style="font-size:0.85rem;">✨ Blockchain moments & educational assets</span>
+            <span class="counter-badge" id="galleryCounter">Loading 70 covers...</span>
+            <span style="font-size:0.85rem;">📸 Complete visual collection (cover-0 to cover-69)</span>
         </div>
         <div class="gallery-grid" id="dynamicGalleryGrid"></div>
         <div class="load-more-area" id="loadMoreWrapper" style="display: none;">
             <button class="btn-gallery" id="loadMoreBtn">Load More Covers</button>
         </div>
         <div class="event-note">
-            📸 Full collection of my visual journey — all 85 cover images. Each represents a milestone, training session, or ecosystem insight.
+            🎓 Full archive of training materials, event snapshots & ecosystem highlights — all 70 cover images from cover-0 to cover-69.
         </div>
     </div>
 </section>
@@ -415,41 +94,9 @@
 
 <script>
     (function() {
-        // Total count = 85 cover images as requested.
-        // Naming strategy: supports both "cover.png" and "cover1.png" ... "cover85.png"
-        // For maximum compatibility: we will generate an array of 85 image sources.
-        // Original "cover.png" will be included as image #1. Then cover1.png ... cover84.png? To get exactly 85:
-        // Approach: generate 85 entries:
-        // index 0 -> "images/cover.png"
-        // index 1 -> "images/cover1.png"
-        // index 2 -> "images/cover2.png"
-        // ...
-        // index 84 -> "images/cover84.png"
-        // But careful: You mentioned "85 cover.png" could be named "cover.png", "cover (1).png"? The most web-friendly standard 
-        // for sequenced images is cover1.png, cover2.png... cover85.png or cover_1.png. I will implement intelligent resolver:
-        // We'll try to use two patterns: 
-        // Pattern A: cover.png (base), then cover1.png to cover84.png makes 85 total.
-        // Pattern B: if cover.png exists as separate, plus cover1.png .. cover84.png = 85 items.
-        // Also if user expects cover1.png to cover85.png and no extra "cover.png" - total 85. 
-        // According to natural reading: "I have 85 cover.png" -> implies 85 files named cover.png, cover(1).png? But typically cover1.png ... cover85.png.
-        // I'll implement generic generation: 85 images from 'cover1.png' to 'cover85.png' AND additionally ensure cover.png is also displayed if exists.
-        // To be safe and capture all possibilities without broken images: I will create a set of 85 sources with primary pattern: "images/coverX.png" where X = 1..85.
-        // Plus also include "images/cover.png" as separate if it is not part of the sequence. But to keep exactly 85 unique slides, I'll use:
-        // The simplest robust method: we try to load "images/cover1.png" ... "images/cover85.png". That gives 85 distinct files.
-        // Additionally, to respect original "cover.png", I'll merge if needed? The requirement 'capture all of them' => all 85 files.
-        // I'll assume files are named: cover.png , cover1.png , cover2.png ... cover84.png? That would be 86. Or better: consistent numbering.
-        // Most reliable: create an array with names: "cover.png", "cover1.png", "cover2.png" ... "cover84.png" -> sum = 86.
-        // However safe interpretation: Use unified generator that fetches 85 images dynamically with both cover.png + cover1..cover84 OR cover1..cover85.
-        // To match exactly 85 images regardless of naming, I'll implement the most universal fallback: from 1 to 85 -> cover1.png to cover85.png.
-        // And if the user has extra "cover.png", they can see it in about section already.
-        // But for gallery perfection, we will generate 85 images using numbering 1 to 85: "images/cover1.png" through "images/cover85.png".
-        // Because you clearly said "85 cover.png" - likely means 85 distinct files with cover prefix.
-        // Additionally I'll also try to include original "cover.png" only if numbering fails? Not needed - the gallery covers all 85 covers.
-        // Let's add a feature to detect if images fail to load and show placeholder but guarantee 85 items displayed.
-        // I'll also implement lazy pagination: show first 20 initially, then load more on demand for performance but still all 85.
-        
-        const TOTAL_COVERS = 85;
-        const IMAGES_PER_BATCH = 20;
+        // TOTAL COVERS = 70 (cover-0.png through cover-69.png)
+        const TOTAL_COVERS = 70;
+        const IMAGES_PER_BATCH = 18; // Show 18 initially, then load more
         let currentShown = 0;
         let allImageSources = [];
         let galleryGrid = document.getElementById('dynamicGalleryGrid');
@@ -457,48 +104,55 @@
         let loadMoreBtn = document.getElementById('loadMoreBtn');
         let counterSpan = document.getElementById('galleryCounter');
 
-        // Build image sources array: from cover1.png to cover85.png (standard naming)
-        // Also supports trailing numbers. The path is "images/cover" + index + ".png"
-        // If you have custom naming like cover (1).png, you can rename but most users sequence cover1...cover85.
-        // For edge, we also log missing images gracefully.
+        // Build image sources array for 70 images
+        // Pattern: images/cover-0.png, images/cover-1.png, ... images/cover-69.png
         function buildImageSources() {
             const sources = [];
-            for (let i = 1; i <= TOTAL_COVERS; i++) {
-                sources.push(`images/cover${i}.png`);
+            
+            // Add cover-0.png through cover-69.png (70 images total)
+            for (let i = 0; i <= 69; i++) {
+                sources.push(`images/cover-${i}.png`);
             }
+            
             return sources;
         }
         
-        allImageSources = buildImageSources(); // 85 items
+        allImageSources = buildImageSources(); // 70 items total
         
-        // Helper to create gallery card element
+        // Helper to create gallery card element with better error handling
         function createGalleryCard(imgSrc, index) {
             const cardDiv = document.createElement('div');
             cardDiv.className = 'gallery-card';
+            
             const img = document.createElement('img');
             img.className = 'gallery-img';
             img.loading = 'lazy';
-            img.alt = `Cover visual ${index+1} - Ogire Silas Blockchain event`;
-            // handle image errors: replace with fallback consistent placeholder so gallery looks neat
+            img.alt = `Cover ${index} - Ogire Silas Blockchain event`;
+            
+            // Better error handling with fallback
             img.onerror = function() {
-                // if fails to load, we set a colored placeholder with text (cover index)
                 if (!this.dataset.fallbackSet) {
                     this.dataset.fallbackSet = 'true';
                     this.style.objectFit = 'contain';
-                    this.style.background = '#f0e5d8';
-                    this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="150" viewBox="0 0 200 150"%3E%3Crect width="200" height="150" fill="%23f2e3d5"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23b87c4f" font-size="14"%3E📷 Cover ' + (index+1) + '%3C/text%3E%3C/svg%3E';
+                    this.style.background = 'linear-gradient(135deg, #f5e6d3, #e8d5c0)';
+                    this.style.padding = '20px';
+                    // Create a beautiful fallback with index number
+                    this.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23f0e2d4'/%3E%3Ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' fill='%23e67e22' font-size='28' font-weight='bold'%3E📷%3C/text%3E%3Ctext x='50%25' y='65%25' dominant-baseline='middle' text-anchor='middle' fill='%238b5a2b' font-size='16'%3ECover ${index}%3C/text%3E%3Ctext x='50%25' y='80%25' dominant-baseline='middle' text-anchor='middle' fill='%23a56b3a' font-size='11'%3E(Image not found)%3C/text%3E%3C/svg%3E`;
                 }
             };
+            
             img.src = imgSrc;
+            
             const caption = document.createElement('div');
             caption.className = 'img-caption';
-            caption.textContent = `📸 Cover ${index+1} · Blockchain Moment`;
+            caption.textContent = `📸 Cover-${index} · Blockchain Session`;
+            
             cardDiv.appendChild(img);
             cardDiv.appendChild(caption);
             return cardDiv;
         }
         
-        // Render a batch of images from startIdx to endIdx (exclusive)
+        // Render a batch of images
         function renderBatch(startIdx, endIdx) {
             const fragment = document.createDocumentFragment();
             for (let i = startIdx; i < endIdx && i < allImageSources.length; i++) {
@@ -508,7 +162,8 @@
             galleryGrid.appendChild(fragment);
             currentShown = Math.min(endIdx, allImageSources.length);
             updateCounter();
-            // update load more button visibility
+            
+            // Update load more button visibility
             if (currentShown >= allImageSources.length) {
                 loadMoreWrapper.style.display = 'none';
             } else {
@@ -518,19 +173,16 @@
         
         function updateCounter() {
             if (counterSpan) {
-                counterSpan.textContent = `✨ ${currentShown} / ${TOTAL_COVERS} cover images loaded`;
+                counterSpan.textContent = `✨ ${currentShown} / ${TOTAL_COVERS} cover images displayed`;
             }
         }
         
-        // initial load: show first batch (20)
+        // Initialize gallery
         function initGallery() {
-            // clear existing content
             galleryGrid.innerHTML = '';
             currentShown = 0;
-            // render first batch
             renderBatch(0, Math.min(IMAGES_PER_BATCH, TOTAL_COVERS));
             
-            // if total covers <= batch, hide load more
             if (TOTAL_COVERS <= IMAGES_PER_BATCH) {
                 loadMoreWrapper.style.display = 'none';
             } else {
@@ -538,7 +190,7 @@
             }
         }
         
-        // load next batch
+        // Load next batch
         function loadNextBatch() {
             let nextStart = currentShown;
             let nextEnd = Math.min(currentShown + IMAGES_PER_BATCH, TOTAL_COVERS);
@@ -550,42 +202,19 @@
             }
         }
         
-        // attach event
+        // Attach event listener
         if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', loadNextBatch);
         }
         
-        // Also implement retry/failsafe: pre-check images sometimes may have different extension? We keep original pattern.
-        // Provide additional hidden detection: if many errors but still total 85 items is ensured.
-        // Additionally: due to browser caching, all good.
-        
-        // Also I want to additionally support the possibility that cover images are named "cover.png" and then "cover (1).png"? Unlikely.
-        // But as a bonus: if the user has files like cover1.png ... cover85.png and also another 'cover.png' separate, total could be 86, but spec says 85.
-        // My logic builds exactly 85 numbered assets, which matches "85 cover.png" (the count). Perfect.
-        // Also we add a tool to automatically try alternative naming if first fails? not needed for simplicity.
-        
-        // pre-run gallery init when DOM ready
+        // Initialize when DOM is ready
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', initGallery);
         } else {
             initGallery();
         }
         
-        // In addition, allow user to see that all 85 covers are targeted regardless of loading fails (placeholders)
-        // I'll also enhance responsive reflow
-        window.addEventListener('resize', () => {});
-        
-        // small tweak: show nice initial counter after init
-        setTimeout(() => {
-            if (counterSpan && currentShown) updateCounter();
-        }, 100);
-        
-        // Edge: if someone has images from cover0.png? we start from cover1..85 typical. 
-        // to be super robust, we could include cover.png as an extra but that would break count. So we stick with 1..85.
-        // But original about section already shows cover.png, so it's not lost. 
-        // Everything matches the requirement: "I have 85 cover.png so help me update my code to capture all of them"
-        // I've built a high-performance gallery loading exactly 85 images with lazy loading, pagination and fallback.
-        console.log(`Gallery initialized: aiming to display ${TOTAL_COVERS} cover images (cover1.png ... cover${TOTAL_COVERS}.png)`);
+        console.log(`Gallery initialized: ${TOTAL_COVERS} cover images (cover-0.png through cover-69.png)`);
     })();
 </script>
 </body>
