@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Ogire Silas | Digital Creator – Full Cover Gallery</title>
+<title>Ogire Silas | Digital Creator – Full Cover Gallery & Testimonials</title>
 <link rel="stylesheet" href="style.css">
 <style>
     .debug-panel {
@@ -125,6 +125,205 @@
         transform: translateY(-5px);
         box-shadow: 0 15px 30px rgba(0,0,0,0.2);
     }
+    
+    /* ========== TESTIMONIALS SECTION STYLES ========== */
+    .testimonials-section {
+        background: linear-gradient(135deg, #fef9f0 0%, #fff5e8 100%);
+        border-radius: 2rem;
+        margin: 2rem auto;
+    }
+    
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .testimonial-card {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(230,126,34,0.1);
+    }
+    
+    .testimonial-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+    }
+    
+    .testimonial-media {
+        width: 100%;
+        background: #1a1a2e;
+        position: relative;
+    }
+    
+    .testimonial-video {
+        width: 100%;
+        height: auto;
+        display: block;
+        cursor: pointer;
+    }
+    
+    .video-placeholder {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .video-placeholder:hover {
+        background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+    }
+    
+    .video-placeholder .play-icon {
+        font-size: 48px;
+        margin-bottom: 10px;
+    }
+    
+    .video-placeholder p {
+        margin: 0;
+        font-size: 14px;
+        opacity: 0.9;
+    }
+    
+    .testimonial-content {
+        padding: 1.8rem;
+    }
+    
+    .testimonial-text {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #2c3e4e;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-left: 20px;
+        border-left: 3px solid #e67e22;
+    }
+    
+    .testimonial-text::before {
+        content: '"';
+        font-size: 3rem;
+        color: #e67e22;
+        opacity: 0.3;
+        position: absolute;
+        top: -15px;
+        left: -5px;
+        font-family: serif;
+    }
+    
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid #f0e2d4;
+    }
+    
+    .author-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #e67e22, #f39c12);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+    }
+    
+    .author-info h4 {
+        margin: 0;
+        font-size: 1rem;
+        color: #1e2f3f;
+    }
+    
+    .author-info p {
+        margin: 4px 0 0;
+        font-size: 0.8rem;
+        color: #e67e22;
+        font-weight: 500;
+    }
+    
+    .testimonial-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 1rem;
+    }
+    
+    .testimonial-tags span {
+        background: #fef3e8;
+        color: #e67e22;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+    
+    /* Video Modal for full-screen playback */
+    .video-modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.95);
+        cursor: pointer;
+    }
+    
+    .video-modal-content {
+        position: relative;
+        margin: auto;
+        width: 90%;
+        max-width: 900px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .video-modal video {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+    }
+    
+    .close-video-modal {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        color: white;
+        font-size: 35px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    .close-video-modal:hover {
+        color: #e67e22;
+    }
+    
+    @media (max-width: 768px) {
+        .testimonials-grid {
+            grid-template-columns: 1fr;
+        }
+        .testimonial-card {
+            max-width: 100%;
+        }
+    }
 </style>
 </head>
 <body>
@@ -136,6 +335,7 @@
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#events">Events</a>
+        <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
@@ -177,7 +377,80 @@
     </div>
 </section>
 
-<!-- EVENTS + FULL COVER GALLERY -->
+<!-- TESTIMONIALS SECTION -->
+<section id="testimonials" class="section testimonials-section">
+    <h2>Success Stories</h2>
+    <p style="text-align: center; margin-bottom: 1rem;">Real experiences from our community members</p>
+    
+    <div class="testimonials-grid">
+        <!-- Testimonial Card 1 with Video -->
+        <div class="testimonial-card">
+            <div class="testimonial-media" data-video="testimony-video-1">
+                <video class="testimonial-video" preload="metadata" style="display: none;">
+                    <source src="videos/testimony-video-1.mp4" type="video/mp4">
+                </video>
+                <div class="video-placeholder">
+                    <div class="play-icon">▶️</div>
+                    <p>Click to watch testimony</p>
+                    <p style="font-size: 11px; margin-top: 8px;">🎥 testimony-video-1.mp4</p>
+                </div>
+            </div>
+            <div class="testimonial-content">
+                <div class="testimonial-text">
+                    After doing Morphology machine check up and Zetta Wellness Experience, I immediately bought my Pro shopper package!
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-icon">👩</div>
+                    <div class="author-info">
+                        <h4>Sister (Zarraz World Community)</h4>
+                        <p>Verified Member</p>
+                    </div>
+                </div>
+                <div class="testimonial-tags">
+                    <span>#kyooriscure</span>
+                    <span>#zettawellness</span>
+                    <span>#1world1currency</span>
+                    <span>#zarrazdollarfuturistic</span>
+                    <span>#protokolsihatzarrazworld</span>
+                    <span>#zarrazworldcommunity</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Testimonial Card 2 with Video -->
+        <div class="testimonial-card">
+            <div class="testimonial-media" data-video="testimony-video-2">
+                <video class="testimonial-video" preload="metadata" style="display: none;">
+                    <source src="videos/testimony-video-2.mp4" type="video/mp4">
+                </video>
+                <div class="video-placeholder">
+                    <div class="play-icon">▶️</div>
+                    <p>Click to watch testimony</p>
+                    <p style="font-size: 11px; margin-top: 8px;">🎥 testimony-video-2.mp4</p>
+                </div>
+            </div>
+            <div class="testimonial-content">
+                <div class="testimonial-text">
+                    The Zarraz World community has transformed my approach to wellness and financial freedom. Highly recommended!
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-icon">👨</div>
+                    <div class="author-info">
+                        <h4>Community Member</h4>
+                        <p>Success Story</p>
+                    </div>
+                </div>
+                <div class="testimonial-tags">
+                    <span>#zarrazworldcommunity</span>
+                    <span>#zettawellness</span>
+                    <span>#proshopper</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EVENTS + FULL COVER GALLERY (UPDATED: cover-0 to cover-72 = 73 images) -->
 <section id="events" class="section">
     <h2>Upcoming Events & Cover Gallery</h2>
     <p style="margin-bottom: 0.5rem;">
@@ -194,7 +467,7 @@
     <div class="gallery-container" id="coverGalleryContainer">
         <div class="gallery-stats">
             <span class="counter-badge" id="galleryCounter">Loading covers...</span>
-            <span style="font-size:0.85rem;">📸 Complete visual collection (cover-0 to cover-69)</span>
+            <span style="font-size:0.85rem;">📸 Complete visual collection (cover-0 to cover-72)</span>
         </div>
         <div class="gallery-grid" id="dynamicGalleryGrid"></div>
         <div class="load-more-area" id="loadMoreWrapper" style="display: none;">
@@ -202,7 +475,8 @@
         </div>
         <div class="event-note">
             🎓 Full archive of training materials, event snapshots & ecosystem highlights<br>
-            💡 Click on any image to view in full size
+            💡 Click on any image to view in full size<br>
+            📸 Total: 73 images (cover-0.png to cover-72.jpg)
         </div>
     </div>
 </section>
@@ -221,23 +495,30 @@
     <p>© 2026 Ogire Silas — All Rights Reserved | Digital Creator Ecosystem</p>
 </footer>
 
-<!-- Lightbox Modal -->
+<!-- Lightbox Modal for Images -->
 <div id="lightbox" class="lightbox">
     <span class="close-lightbox">&times;</span>
     <img class="lightbox-content" id="lightbox-img">
     <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
 
+<!-- Video Modal for full-screen playback -->
+<div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+        <span class="close-video-modal">&times;</span>
+        <video id="modalVideo" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
 <script>
     (function() {
-        // CONFIGURATION - EXACT FILE EXTENSIONS FOR ALL 70 IMAGES
-        const TOTAL_IMAGES = 70; // 0 to 69 = 70 images
+        // CONFIGURATION - UPDATED: cover-0 to cover-72 (73 images total)
+        const TOTAL_IMAGES = 73; // 0 to 72 = 73 images
         
-        // Define EXACT extension for each image based on your file structure:
-        // cover-0.png, cover-1.png
-        // cover-2.jpg to cover-55.jpg
-        // cover-56.png to cover-68.png
-        // cover-69.jpg
+        // Define EXACT extension for each image
         function getImageExtension(index) {
             // cover-0.png and cover-1.png
             if (index === 0 || index === 1) {
@@ -251,11 +532,10 @@
             else if (index >= 56 && index <= 68) {
                 return '.png';
             }
-            // cover-69.jpg
-            else if (index === 69) {
+            // cover-69.jpg, cover-70.jpg, cover-71.jpg, cover-72.jpg
+            else if (index >= 69 && index <= 72) {
                 return '.jpg';
             }
-            // Fallback (should never reach here)
             return '.jpg';
         }
         
@@ -275,6 +555,12 @@
         let lightboxImg = document.getElementById('lightbox-img');
         let lightboxCaption = document.getElementById('lightbox-caption');
         let closeLightbox = document.getElementsByClassName('close-lightbox')[0];
+        
+        // Video modal elements
+        let videoModal = document.getElementById('videoModal');
+        let modalVideo = document.getElementById('modalVideo');
+        let videoSource = document.getElementById('videoSource');
+        let closeVideoModal = document.getElementsByClassName('close-video-modal')[0];
         
         // Track loaded/failed images
         let imageStatus = {};
@@ -319,11 +605,11 @@
         }
         
         allImageSources = buildImageSources();
-        addDebugMessage(`✅ Initialized ${TOTAL_IMAGES} images with EXACT file extensions:`);
+        addDebugMessage(`✅ Initialized ${TOTAL_IMAGES} images (cover-0 to cover-72)`);
         addDebugMessage(`  📁 cover-0.png, cover-1.png (PNG)`);
         addDebugMessage(`  📁 cover-2.jpg through cover-55.jpg (JPG)`);
         addDebugMessage(`  📁 cover-56.png through cover-68.png (PNG)`);
-        addDebugMessage(`  📁 cover-69.jpg (JPG)`);
+        addDebugMessage(`  📁 cover-69.jpg, cover-70.jpg, cover-71.jpg, cover-72.jpg (JPG)`);
         
         // Function to check which images actually exist
         function checkImageExistence() {
@@ -376,7 +662,7 @@
             document.body.style.overflow = "auto";
         }
         
-        // Create gallery card with full-size images
+        // Create gallery card
         function createGalleryCard(imgSrc, index) {
             const cardDiv = document.createElement('div');
             cardDiv.className = 'gallery-card';
@@ -390,7 +676,6 @@
             img.style.height = 'auto';
             img.style.display = 'block';
             
-            // Track individual image load status
             img.onload = () => {
                 addDebugMessage(`🖼️ Gallery: cover-${index} displayed (${img.naturalWidth}x${img.naturalHeight})`);
                 if (imageStatus[index] === false) {
@@ -418,7 +703,6 @@
             const extension = getImageExtension(index);
             caption.textContent = `📸 cover-${index}${extension} · Click to enlarge`;
             
-            // Add click event for lightbox
             cardDiv.addEventListener('click', () => {
                 openLightbox(imgSrc, `Cover ${index} - Blockchain Session (${img.naturalWidth}x${img.naturalHeight})`);
             });
@@ -469,11 +753,7 @@
         function initGallery() {
             galleryGrid.innerHTML = '';
             currentShown = 0;
-            
-            // Check all images first
             checkImageExistence();
-            
-            // Render first batch
             renderBatch(0, Math.min(IMAGES_PER_BATCH, TOTAL_IMAGES));
             
             if (TOTAL_IMAGES <= IMAGES_PER_BATCH) {
@@ -495,7 +775,36 @@
             }
         }
         
-        // Attach event listener
+        // Video modal functions
+        function setupVideoTestimonials() {
+            const testimonialMedia = document.querySelectorAll('.testimonial-media');
+            
+            testimonialMedia.forEach(media => {
+                const videoElement = media.querySelector('.testimonial-video');
+                const placeholder = media.querySelector('.video-placeholder');
+                const videoFileName = media.getAttribute('data-video');
+                
+                if (placeholder && videoFileName) {
+                    placeholder.addEventListener('click', () => {
+                        const videoPath = `videos/${videoFileName}.mp4`;
+                        videoSource.src = videoPath;
+                        modalVideo.load();
+                        videoModal.style.display = 'block';
+                        modalVideo.play();
+                        addDebugMessage(`🎥 Playing video: ${videoFileName}.mp4`);
+                    });
+                }
+            });
+        }
+        
+        // Close video modal
+        function closeVideoModalFunc() {
+            videoModal.style.display = 'none';
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        }
+        
+        // Attach event listeners
         if (loadMoreBtn) {
             loadMoreBtn.addEventListener('click', loadNextBatch);
         }
@@ -511,21 +820,41 @@
             }
         });
         
+        // Video modal event listeners
+        if (closeVideoModal) {
+            closeVideoModal.addEventListener('click', closeVideoModalFunc);
+        }
+        
+        videoModal.addEventListener('click', function(e) {
+            if (e.target === videoModal) {
+                closeVideoModalFunc();
+            }
+        });
+        
         // Close with escape key
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox.style.display === 'block') {
-                closeLightboxFunc();
+            if (e.key === 'Escape') {
+                if (lightbox.style.display === 'block') {
+                    closeLightboxFunc();
+                }
+                if (videoModal.style.display === 'block') {
+                    closeVideoModalFunc();
+                }
             }
         });
         
         // Initialize when DOM is ready
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initGallery);
+            document.addEventListener('DOMContentLoaded', () => {
+                initGallery();
+                setupVideoTestimonials();
+            });
         } else {
             initGallery();
+            setupVideoTestimonials();
         }
         
-        // Also check console for any errors
+        // Error handling
         window.addEventListener('error', function(e) {
             if (e.target.tagName === 'IMG') {
                 addDebugMessage(`🌐 Browser error: Failed to load ${e.target.src}`, true);
