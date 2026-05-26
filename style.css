@@ -190,6 +190,326 @@ header a:hover::after {
     transform: scale(1.01);
 }
 
+/* ========== CONVENTIONS SECTION STYLES ========== */
+.conventions-section {
+    background: linear-gradient(135deg, #0a192f 0%, #1a2f3f 100%);
+    border-radius: 2rem;
+    margin: 2rem auto;
+    color: white;
+}
+
+.conventions-section h2 {
+    color: white;
+}
+
+.conventions-section h2:after {
+    background: linear-gradient(90deg, #e67e22, #ffb347);
+}
+
+.conventions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.convention-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.convention-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 40px -12px rgba(0,0,0,0.3);
+    background: rgba(255,255,255,0.15);
+}
+
+.convention-icon {
+    background: linear-gradient(135deg, #e67e22, #f39c12);
+    padding: 1.5rem;
+    text-align: center;
+    font-size: 3rem;
+}
+
+.convention-content {
+    padding: 1.8rem;
+}
+
+.convention-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: #ffd7a0;
+}
+
+.convention-details {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+}
+
+.convention-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #ffb86b;
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.convention-badge {
+    display: inline-block;
+    background: #e67e22;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+/* ========== TESTIMONIALS SECTION STYLES ========== */
+.testimonials-section {
+    background: linear-gradient(135deg, #fef9f0 0%, #fff5e8 100%);
+    border-radius: 2rem;
+    margin: 2rem auto;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.testimonial-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(230,126,34,0.1);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 40px -12px rgba(0,0,0,0.2);
+}
+
+.testimonial-media {
+    width: 100%;
+    background: #1a1a2e;
+    position: relative;
+}
+
+.testimonial-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-placeholder:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.video-placeholder .play-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.testimonial-content {
+    padding: 1.8rem;
+}
+
+.testimonial-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #2c3e4e;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-left: 20px;
+    border-left: 3px solid #e67e22;
+}
+
+.testimonial-text::before {
+    content: '"';
+    font-size: 3rem;
+    color: #e67e22;
+    opacity: 0.3;
+    position: absolute;
+    top: -15px;
+    left: -5px;
+    font-family: serif;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f0e2d4;
+}
+
+.author-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #e67e22, #f39c12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.author-info h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #1e2f3f;
+}
+
+.author-info p {
+    margin: 4px 0 0;
+    font-size: 0.8rem;
+    color: #e67e22;
+    font-weight: 500;
+}
+
+.testimonial-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.testimonial-tags span {
+    background: #fef3e8;
+    color: #e67e22;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* ========== LIGHTBOX STYLES ========== */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    cursor: pointer;
+    overflow: auto;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    margin-top: 5%;
+    object-fit: contain;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.close-lightbox:hover {
+    color: #e67e22;
+}
+
+.lightbox-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    background: rgba(0,0,0,0.7);
+}
+
+/* ========== VIDEO MODAL STYLES ========== */
+.video-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    cursor: pointer;
+}
+
+.video-modal-content {
+    position: relative;
+    margin: auto;
+    width: 90%;
+    max-width: 900px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.video-modal video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+.close-video-modal {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-video-modal:hover {
+    color: #e67e22;
+}
+
 /* EVENTS & GALLERY EXTENSIONS */
 .event {
     width: 85%;
@@ -199,7 +519,7 @@ header a:hover::after {
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
-/* GALLERY specific (new from updated html) */
+/* GALLERY specific */
 .gallery-container {
     margin-top: 2rem;
 }
@@ -239,6 +559,7 @@ header a:hover::after {
     transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
     box-shadow: 0 12px 24px -12px rgba(0,0,0,0.12);
     border: 1px solid rgba(0,0,0,0.05);
+    cursor: pointer;
 }
 
 .gallery-card:hover {
@@ -249,9 +570,11 @@ header a:hover::after {
 
 .gallery-img {
     width: 100%;
-    height: auto !important;        /* Natural height */
-    object-fit: contain !important;  /* No cropping */
-    aspect-ratio: auto !important;   /* Remove forced ratio */
+    height: auto !important;
+    object-fit: contain !important;
+    aspect-ratio: auto !important;
+    background: #f4ede5;
+    display: block;
 }
 
 .gallery-card:hover .gallery-img {
@@ -379,6 +702,48 @@ footer {
     border-top: 1px solid rgba(255,255,255,0.05);
 }
 
+/* DEBUG PANEL */
+.debug-panel {
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 8px;
+    font-family: monospace;
+    font-size: 12px;
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.debug-panel h4 {
+    margin: 0 0 10px 0;
+    color: #e67e22;
+}
+
+.debug-panel .success {
+    color: #2ecc71;
+}
+
+.debug-panel .error {
+    color: #e74c3c;
+}
+
+.toggle-debug {
+    background: #e67e22;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+
+.toggle-debug:hover {
+    background: #d35400;
+}
+
 /* MOBILE & RESPONSIVE */
 @media(max-width: 768px){
     header {
@@ -432,6 +797,27 @@ footer {
     .section h2 {
         font-size: 1.9rem;
     }
+    
+    .testimonials-grid,
+    .conventions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonial-card {
+        max-width: 100%;
+    }
+    
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 85%;
+        margin-top: 15%;
+    }
+    
+    .close-lightbox {
+        top: 10px;
+        right: 20px;
+        font-size: 30px;
+    }
 }
 
 /* SMALL PHONES */
@@ -453,6 +839,14 @@ footer {
         padding: 10px 20px;
         font-size: 0.9rem;
     }
+    
+    .convention-title {
+        font-size: 1.1rem;
+    }
+    
+    .testimonial-text {
+        font-size: 0.95rem;
+    }
 }
 
 /* ADDITIONAL POLISH FOR DARK SECTIONS */
@@ -470,6 +864,28 @@ footer {
 .dark .event-note {
     background: #2a3a44;
     color: #ffd9b5;
+}
+
+.dark .testimonial-card {
+    background: #1f2a36;
+    border-color: #334155;
+}
+
+.dark .testimonial-text {
+    color: #e2e8f0;
+}
+
+.dark .testimonial-author {
+    border-top-color: #334155;
+}
+
+.dark .author-info h4 {
+    color: #ffd7a0;
+}
+
+.dark .testimonial-tags span {
+    background: #2a3a44;
+    color: #ffb86b;
 }
 
 /* SCROLL BAR */

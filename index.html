@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Ogire Silas | Digital Creator – Full Cover Gallery & Testimonials</title>
+<title>Ogire Silas | Digital Creator – Ambassador Zarraz World</title>
 <link rel="stylesheet" href="style.css">
 <style>
     .debug-panel {
@@ -42,7 +42,7 @@
         background: #d35400;
     }
     
-    /* FULL IMAGE DISPLAY - No cropping, full size */
+    /* FULL IMAGE DISPLAY */
     .gallery-img {
         width: 100%;
         height: auto !important;
@@ -64,13 +64,12 @@
         cursor: pointer;
     }
     
-    /* Remove fixed aspect ratio to show full images */
     .gallery-img {
         aspect-ratio: auto !important;
         max-height: none !important;
     }
     
-    /* Lightbox styles for full-screen viewing */
+    /* Lightbox styles */
     .lightbox {
         display: none;
         position: fixed;
@@ -126,6 +125,91 @@
         box-shadow: 0 15px 30px rgba(0,0,0,0.2);
     }
     
+    /* ========== CONVENTIONS SECTION STYLES ========== */
+    .conventions-section {
+        background: linear-gradient(135deg, #0a192f 0%, #1a2f3f 100%);
+        border-radius: 2rem;
+        margin: 2rem auto;
+        color: white;
+    }
+    
+    .conventions-section h2 {
+        color: white;
+    }
+    
+    .conventions-section h2:after {
+        background: linear-gradient(90deg, #e67e22, #ffb347);
+    }
+    
+    .conventions-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .convention-card {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 24px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .convention-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 40px -12px rgba(0,0,0,0.3);
+        background: rgba(255,255,255,0.15);
+    }
+    
+    .convention-icon {
+        background: linear-gradient(135deg, #e67e22, #f39c12);
+        padding: 1.5rem;
+        text-align: center;
+        font-size: 3rem;
+    }
+    
+    .convention-content {
+        padding: 1.8rem;
+    }
+    
+    .convention-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+        color: #ffd7a0;
+    }
+    
+    .convention-details {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+    }
+    
+    .convention-location {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.85rem;
+        color: #ffb86b;
+        margin-top: 1rem;
+        padding-top: 0.8rem;
+        border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .convention-badge {
+        display: inline-block;
+        background: #e67e22;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+    }
+    
     /* ========== TESTIMONIALS SECTION STYLES ========== */
     .testimonials-section {
         background: linear-gradient(135deg, #fef9f0 0%, #fff5e8 100%);
@@ -160,13 +244,6 @@
         position: relative;
     }
     
-    .testimonial-video {
-        width: 100%;
-        height: auto;
-        display: block;
-        cursor: pointer;
-    }
-    
     .video-placeholder {
         width: 100%;
         height: 250px;
@@ -187,12 +264,6 @@
     .video-placeholder .play-icon {
         font-size: 48px;
         margin-bottom: 10px;
-    }
-    
-    .video-placeholder p {
-        margin: 0;
-        font-size: 14px;
-        opacity: 0.9;
     }
     
     .testimonial-content {
@@ -270,10 +341,9 @@
         border-radius: 20px;
         font-size: 0.7rem;
         font-weight: 500;
-        letter-spacing: 0.5px;
     }
     
-    /* Video Modal for full-screen playback */
+    /* Video Modal */
     .video-modal {
         display: none;
         position: fixed;
@@ -317,11 +387,8 @@
     }
     
     @media (max-width: 768px) {
-        .testimonials-grid {
+        .testimonials-grid, .conventions-grid {
             grid-template-columns: 1fr;
-        }
-        .testimonial-card {
-            max-width: 100%;
         }
     }
 </style>
@@ -330,11 +397,12 @@
 
 <!-- NAVBAR -->
 <header>
-    <h2>Ogire Silas</h2>
+    <h2>Ambassador Ogire Silas</h2>
     <nav>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#events">Events</a>
+        <a href="#conventions">Conventions</a>
+        <a href="#events">Gallery</a>
         <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
     </nav>
@@ -344,16 +412,17 @@
 <section class="hero">
     <img src="images/profile.jpg" class="profile" alt="Ogire Silas profile" onerror="this.src='https://placehold.co/180x180?text=Silas'">
     <h1>Ambassador Ogire Silas</h1>
-    <p>Digital Creator | Blockchain Educator | Entrepreneur</p>
+    <p>Zarraz World Community | Digital Creator | Blockchain Educator | Entrepreneur</p>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="section">
     <h2>About Me</h2>
     <p>
-        I am a Digital Creator based in Kampala, Uganda,
-        passionate about blockchain technology, digital education,
-        and empowering communities through innovation and ecosystem trading opportunities.
+        I am Ambassador Ogire Silas, a passionate Digital Creator, Blockchain Educator, 
+        and Community Leader based in Kampala, Uganda. As a proud representative of 
+        Zarraz World Community, I am dedicated to empowering individuals through 
+        blockchain technology, digital education, and innovative ecosystem trading opportunities.
     </p>
     <img src="images/cover-0.png" class="cover" alt="cover preview" onerror="this.style.display='none'">
 </section>
@@ -377,13 +446,85 @@
     </div>
 </section>
 
+<!-- CONVENTIONS & EVENTS SECTION -->
+<section id="conventions" class="section conventions-section">
+    <h2>📅 Conventions & Leadership Events</h2>
+    <p style="text-align: center; margin-bottom: 1rem; opacity: 0.9;">East African gatherings empowering communities and building unstoppable leaders</p>
+    
+    <div class="conventions-grid">
+        <!-- Convention 1: East African Convention 2025 -->
+        <div class="convention-card">
+            <div class="convention-icon">🌍</div>
+            <div class="convention-content">
+                <span class="convention-badge">🌟 Flagship Event</span>
+                <div class="convention-title">Ambassador Sila Zarraz World: East African Convention 2025</div>
+                <div class="convention-details">
+                    A landmark gathering bringing together visionaries, innovators, and community leaders 
+                    from across East Africa to explore opportunities in blockchain, wellness, and digital economy.
+                </div>
+                <div class="convention-location">
+                    📍 Multiple Venues | East Africa
+                </div>
+            </div>
+        </div>
+        
+        <!-- Convention 2: Unstoppable Winners Event -->
+        <div class="convention-card">
+            <div class="convention-icon">🏆🎉🏆</div>
+            <div class="convention-content">
+                <span class="convention-badge">🏆 Victory Celebration</span>
+                <div class="convention-title">Ambassador Sila Zarraz World: Unstoppable Winners</div>
+                <div class="convention-details">
+                    An electrifying event celebrating unstoppable winners at Thobani Centre Conference Centre Level 2, 
+                    Kampala Uganda. A night of recognition, inspiration, and community empowerment.
+                </div>
+                <div class="convention-location">
+                    📍 Thobani Centre, Conference Centre Level 2 | Kampala, Uganda
+                </div>
+            </div>
+        </div>
+        
+        <!-- Convention 3: Leadership Summit 2025 -->
+        <div class="convention-card">
+            <div class="convention-icon">👑</div>
+            <div class="convention-content">
+                <span class="convention-badge">👑 Leadership Excellence</span>
+                <div class="convention-title">Ambassador Sila Zarraz World: East African Convention Leadership Summit 2025</div>
+                <div class="convention-details">
+                    A premier leadership summit focused on developing the next generation of East African leaders 
+                    in blockchain, entrepreneurship, and community development.
+                </div>
+                <div class="convention-location">
+                    📍 Regional Venues | East Africa
+                </div>
+            </div>
+        </div>
+        
+        <!-- Convention 4: Welcome Dinner & Guest Reception -->
+        <div class="convention-card">
+            <div class="convention-icon">🍽️🤝</div>
+            <div class="convention-content">
+                <span class="convention-badge">🤝 Welcome Reception</span>
+                <div class="convention-title">Ambassador Sila Zarraz World: East African Convention Welcome Dinner</div>
+                <div class="convention-details">
+                    Welcoming all our distinguished Guests from East Africa and Upcountry Leaders for the 
+                    East African convention with a grand dinner celebration, fostering unity and collaboration.
+                </div>
+                <div class="convention-location">
+                   📍 VIP Reception Hall | Kampala, Uganda
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- TESTIMONIALS SECTION -->
 <section id="testimonials" class="section testimonials-section">
-    <h2>Success Stories</h2>
+    <h2>💬 Success Stories</h2>
     <p style="text-align: center; margin-bottom: 1rem;">Real experiences from our community members</p>
     
     <div class="testimonials-grid">
-        <!-- Testimonial Card 1 with Video -->
+        <!-- Testimonial Card 1 -->
         <div class="testimonial-card">
             <div class="testimonial-media" data-video="testimony-video-1">
                 <video class="testimonial-video" preload="metadata" style="display: none;">
@@ -417,7 +558,7 @@
             </div>
         </div>
         
-        <!-- Testimonial Card 2 with Video -->
+        <!-- Testimonial Card 2 -->
         <div class="testimonial-card">
             <div class="testimonial-media" data-video="testimony-video-2">
                 <video class="testimonial-video" preload="metadata" style="display: none;">
@@ -450,11 +591,11 @@
     </div>
 </section>
 
-<!-- EVENTS + FULL COVER GALLERY (UPDATED: cover-0 to cover-72 = 73 images) -->
+<!-- EVENTS + FULL COVER GALLERY (UPDATED: cover-0 to cover-113 = 114 images) -->
 <section id="events" class="section">
-    <h2>Upcoming Events & Cover Gallery</h2>
+    <h2>📸 Event Gallery</h2>
     <p style="margin-bottom: 0.5rem;">
-        Join our LIVE Blockchain Class sessions where we explore world-class ecosystem trading opportunities.
+        Capturing moments from our conventions, training sessions, and community gatherings.
     </p>
     
     <button class="toggle-debug" id="toggleDebugBtn">🔧 Show/Hide Debug Info</button>
@@ -467,16 +608,16 @@
     <div class="gallery-container" id="coverGalleryContainer">
         <div class="gallery-stats">
             <span class="counter-badge" id="galleryCounter">Loading covers...</span>
-            <span style="font-size:0.85rem;">📸 Complete visual collection (cover-0 to cover-72)</span>
+            <span style="font-size:0.85rem;">📸 Complete visual collection (cover-0 to cover-113)</span>
         </div>
         <div class="gallery-grid" id="dynamicGalleryGrid"></div>
         <div class="load-more-area" id="loadMoreWrapper" style="display: none;">
             <button class="btn-gallery" id="loadMoreBtn">Load More Covers</button>
         </div>
         <div class="event-note">
-            🎓 Full archive of training materials, event snapshots & ecosystem highlights<br>
+            🎓 Full archive of convention moments, training materials, event snapshots & ecosystem highlights<br>
             💡 Click on any image to view in full size<br>
-            📸 Total: 73 images (cover-0.png to cover-72.jpg)
+            📸 Total: 114 images (cover-0 to cover-113)
         </div>
     </div>
 </section>
@@ -488,35 +629,34 @@
     <p>Email: ogiresilas@gmail.com</p>
     <p>WhatsApp: +256 771 467 137</p>
     <p>Mobile: +256 771 467 137</p>
-    <a class="btn" href="mailto:ogiresilas@gmail.com?subject=Hello%20Silas">Message Me</a>
+    <a class="btn" href="mailto:ogiresilas@gmail.com?subject=Hello%20Ambassador%20Silas">Message Me</a>
 </section>
 
 <footer>
-    <p>© 2026 Ogire Silas — All Rights Reserved | Digital Creator Ecosystem</p>
+    <p>© 2026 Ambassador Ogire Silas — Zarraz World Community | All Rights Reserved</p>
 </footer>
 
-<!-- Lightbox Modal for Images -->
+<!-- Lightbox Modal -->
 <div id="lightbox" class="lightbox">
     <span class="close-lightbox">&times;</span>
     <img class="lightbox-content" id="lightbox-img">
     <div class="lightbox-caption" id="lightbox-caption"></div>
 </div>
 
-<!-- Video Modal for full-screen playback -->
+<!-- Video Modal -->
 <div id="videoModal" class="video-modal">
     <div class="video-modal-content">
         <span class="close-video-modal">&times;</span>
         <video id="modalVideo" controls>
             <source id="videoSource" src="" type="video/mp4">
-            Your browser does not support the video tag.
         </video>
     </div>
 </div>
 
 <script>
     (function() {
-        // CONFIGURATION - UPDATED: cover-0 to cover-72 (73 images total)
-        const TOTAL_IMAGES = 73; // 0 to 72 = 73 images
+        // CONFIGURATION - UPDATED: cover-0 to cover-113 (114 images total)
+        const TOTAL_IMAGES = 114; // 0 to 113 = 114 images
         
         // Define EXACT extension for each image
         function getImageExtension(index) {
@@ -532,14 +672,14 @@
             else if (index >= 56 && index <= 68) {
                 return '.png';
             }
-            // cover-69.jpg, cover-70.jpg, cover-71.jpg, cover-72.jpg
-            else if (index >= 69 && index <= 72) {
+            // cover-69.jpg through cover-113.jpg
+            else if (index >= 69 && index <= 113) {
                 return '.jpg';
             }
             return '.jpg';
         }
         
-        const IMAGES_PER_BATCH = 20;
+        const IMAGES_PER_BATCH = 24;
         let currentShown = 0;
         let allImageSources = [];
         let galleryGrid = document.getElementById('dynamicGalleryGrid');
@@ -562,7 +702,6 @@
         let videoSource = document.getElementById('videoSource');
         let closeVideoModal = document.getElementsByClassName('close-video-modal')[0];
         
-        // Track loaded/failed images
         let imageStatus = {};
         let debugMessages = [];
         
@@ -581,7 +720,6 @@
             console.log(logMessage);
         }
         
-        // Toggle debug panel
         if (toggleDebugBtn) {
             toggleDebugBtn.addEventListener('click', () => {
                 if (debugPanel.style.display === 'none') {
@@ -594,7 +732,6 @@
             });
         }
         
-        // Build image sources with correct extensions
         function buildImageSources() {
             const sources = [];
             for (let i = 0; i < TOTAL_IMAGES; i++) {
@@ -605,13 +742,12 @@
         }
         
         allImageSources = buildImageSources();
-        addDebugMessage(`✅ Initialized ${TOTAL_IMAGES} images (cover-0 to cover-72)`);
+        addDebugMessage(`✅ Initialized ${TOTAL_IMAGES} images (cover-0 to cover-113)`);
         addDebugMessage(`  📁 cover-0.png, cover-1.png (PNG)`);
         addDebugMessage(`  📁 cover-2.jpg through cover-55.jpg (JPG)`);
         addDebugMessage(`  📁 cover-56.png through cover-68.png (PNG)`);
-        addDebugMessage(`  📁 cover-69.jpg, cover-70.jpg, cover-71.jpg, cover-72.jpg (JPG)`);
+        addDebugMessage(`  📁 cover-69.jpg through cover-113.jpg (JPG)`);
         
-        // Function to check which images actually exist
         function checkImageExistence() {
             addDebugMessage("🔍 Starting image existence check...");
             let checkedCount = 0;
@@ -623,32 +759,23 @@
                     checkedCount++;
                     foundCount++;
                     imageStatus[index] = true;
-                    addDebugMessage(`✅ cover-${index}${getImageExtension(index)} - LOADED (${img.naturalWidth}x${img.naturalHeight})`);
+                    addDebugMessage(`✅ cover-${index}${getImageExtension(index)} - LOADED`);
                     if (checkedCount === TOTAL_IMAGES) {
-                        addDebugMessage(`🎉 SCAN COMPLETE: ${foundCount}/${TOTAL_IMAGES} images found successfully!`);
-                        if (foundCount < TOTAL_IMAGES) {
-                            addDebugMessage(`⚠️ Missing ${TOTAL_IMAGES - foundCount} image(s):`, true);
-                            for (let i = 0; i < TOTAL_IMAGES; i++) {
-                                if (!imageStatus[i]) {
-                                    addDebugMessage(`  ❌ cover-${i}${getImageExtension(i)} is MISSING`, true);
-                                }
-                            }
-                        }
+                        addDebugMessage(`🎉 SCAN COMPLETE: ${foundCount}/${TOTAL_IMAGES} images found!`);
                     }
                 };
                 img.onerror = () => {
                     checkedCount++;
                     imageStatus[index] = false;
-                    addDebugMessage(`❌ cover-${index}${getImageExtension(index)} - FAILED to load`, true);
+                    addDebugMessage(`❌ cover-${index}${getImageExtension(index)} - FAILED`, true);
                     if (checkedCount === TOTAL_IMAGES) {
-                        addDebugMessage(`⚠️ SCAN COMPLETE: Only ${foundCount}/${TOTAL_IMAGES} images found`, true);
+                        addDebugMessage(`⚠️ SCAN COMPLETE: ${foundCount}/${TOTAL_IMAGES} images found`, true);
                     }
                 };
                 img.src = src;
             });
         }
         
-        // Open lightbox
         function openLightbox(imgSrc, caption) {
             lightbox.style.display = "block";
             lightboxImg.src = imgSrc;
@@ -656,13 +783,11 @@
             document.body.style.overflow = "hidden";
         }
         
-        // Close lightbox
         function closeLightboxFunc() {
             lightbox.style.display = "none";
             document.body.style.overflow = "auto";
         }
         
-        // Create gallery card
         function createGalleryCard(imgSrc, index) {
             const cardDiv = document.createElement('div');
             cardDiv.className = 'gallery-card';
@@ -671,27 +796,24 @@
             const img = document.createElement('img');
             img.className = 'gallery-img';
             img.loading = 'lazy';
-            img.alt = `Cover ${index} - Ogire Silas Blockchain event`;
+            img.alt = `Cover ${index} - Event Gallery`;
             img.style.width = '100%';
             img.style.height = 'auto';
             img.style.display = 'block';
             
             img.onload = () => {
-                addDebugMessage(`🖼️ Gallery: cover-${index} displayed (${img.naturalWidth}x${img.naturalHeight})`);
-                if (imageStatus[index] === false) {
-                    imageStatus[index] = true;
-                }
+                addDebugMessage(`🖼️ Gallery: cover-${index} displayed`);
                 updateCounter();
             };
             
             img.onerror = () => {
-                addDebugMessage(`⚠️ Gallery: cover-${index} FAILED to display`, true);
+                addDebugMessage(`⚠️ Gallery: cover-${index} FAILED`, true);
                 if (!img.dataset.fallbackSet) {
                     img.dataset.fallbackSet = 'true';
                     img.style.objectFit = 'contain';
                     img.style.background = 'linear-gradient(135deg, #f5e6d3, #e8d5c0)';
                     img.style.padding = '40px';
-                    img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0e2d4'/%3E%3Ctext x='50%25' y='45%25' dominant-baseline='middle' text-anchor='middle' fill='%23e67e22' font-size='32' font-weight='bold'%3E📷%3C/text%3E%3Ctext x='50%25' y='60%25' dominant-baseline='middle' text-anchor='middle' fill='%238b5a2b' font-size='20'%3ECover-${index}%3C/text%3E%3Ctext x='50%25' y='75%25' dominant-baseline='middle' text-anchor='middle' fill='%23a56b3a' font-size='14'%3E(File not found)%3C/text%3E%3C/svg%3E`;
+                    img.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0e2d4'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23e67e22' font-size='24'%3ECover-${index}%3C/text%3E%3C/svg%3E`;
                 }
                 updateCounter();
             };
@@ -700,11 +822,10 @@
             
             const caption = document.createElement('div');
             caption.className = 'img-caption';
-            const extension = getImageExtension(index);
-            caption.textContent = `📸 cover-${index}${extension} · Click to enlarge`;
+            caption.textContent = `📸 cover-${index} · Convention Moment`;
             
             cardDiv.addEventListener('click', () => {
-                openLightbox(imgSrc, `Cover ${index} - Blockchain Session (${img.naturalWidth}x${img.naturalHeight})`);
+                openLightbox(imgSrc, `Event Gallery - Cover ${index}`);
             });
             
             cardDiv.appendChild(img);
@@ -712,12 +833,9 @@
             return cardDiv;
         }
         
-        // Render a batch of images
         function renderBatch(startIdx, endIdx) {
             const fragment = document.createDocumentFragment();
             const end = Math.min(endIdx, allImageSources.length);
-            
-            addDebugMessage(`📦 Rendering batch: images ${startIdx} to ${end-1}`);
             
             for (let i = startIdx; i < end; i++) {
                 const card = createGalleryCard(allImageSources[i], i);
@@ -730,7 +848,6 @@
             
             if (currentShown >= allImageSources.length) {
                 loadMoreWrapper.style.display = 'none';
-                addDebugMessage(`✅ All images loaded! Total displayed: ${currentShown}`);
             } else {
                 loadMoreWrapper.style.display = 'flex';
             }
@@ -739,17 +856,10 @@
         function updateCounter() {
             if (counterSpan) {
                 let loadedCount = document.querySelectorAll('.gallery-card').length;
-                let successfulLoads = 0;
-                document.querySelectorAll('.gallery-img').forEach(img => {
-                    if (!img.src.includes('data:image/svg+xml') && img.complete && img.naturalHeight !== 0) {
-                        successfulLoads++;
-                    }
-                });
-                counterSpan.textContent = `✨ ${loadedCount} / ${TOTAL_IMAGES} covers (${successfulLoads} loaded)`;
+                counterSpan.textContent = `✨ ${loadedCount} / ${TOTAL_IMAGES} event images`;
             }
         }
         
-        // Initialize gallery
         function initGallery() {
             galleryGrid.innerHTML = '';
             currentShown = 0;
@@ -763,27 +873,19 @@
             }
         }
         
-        // Load next batch
         function loadNextBatch() {
             let nextStart = currentShown;
             let nextEnd = Math.min(currentShown + IMAGES_PER_BATCH, TOTAL_IMAGES);
             if (nextStart < TOTAL_IMAGES) {
                 renderBatch(nextStart, nextEnd);
             }
-            if (currentShown >= TOTAL_IMAGES) {
-                loadMoreWrapper.style.display = 'none';
-            }
         }
         
-        // Video modal functions
         function setupVideoTestimonials() {
             const testimonialMedia = document.querySelectorAll('.testimonial-media');
-            
             testimonialMedia.forEach(media => {
-                const videoElement = media.querySelector('.testimonial-video');
                 const placeholder = media.querySelector('.video-placeholder');
                 const videoFileName = media.getAttribute('data-video');
-                
                 if (placeholder && videoFileName) {
                     placeholder.addEventListener('click', () => {
                         const videoPath = `videos/${videoFileName}.mp4`;
@@ -791,76 +893,37 @@
                         modalVideo.load();
                         videoModal.style.display = 'block';
                         modalVideo.play();
-                        addDebugMessage(`🎥 Playing video: ${videoFileName}.mp4`);
                     });
                 }
             });
         }
         
-        // Close video modal
         function closeVideoModalFunc() {
             videoModal.style.display = 'none';
             modalVideo.pause();
             modalVideo.currentTime = 0;
         }
         
-        // Attach event listeners
-        if (loadMoreBtn) {
-            loadMoreBtn.addEventListener('click', loadNextBatch);
-        }
+        if (loadMoreBtn) loadMoreBtn.addEventListener('click', loadNextBatch);
+        if (closeLightbox) closeLightbox.addEventListener('click', closeLightboxFunc);
+        if (closeVideoModal) closeVideoModal.addEventListener('click', closeVideoModalFunc);
         
-        // Lightbox event listeners
-        if (closeLightbox) {
-            closeLightbox.addEventListener('click', closeLightboxFunc);
-        }
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightboxFunc(); });
+        videoModal.addEventListener('click', (e) => { if (e.target === videoModal) closeVideoModalFunc(); });
         
-        lightbox.addEventListener('click', function(e) {
-            if (e.target === lightbox) {
-                closeLightboxFunc();
-            }
-        });
-        
-        // Video modal event listeners
-        if (closeVideoModal) {
-            closeVideoModal.addEventListener('click', closeVideoModalFunc);
-        }
-        
-        videoModal.addEventListener('click', function(e) {
-            if (e.target === videoModal) {
-                closeVideoModalFunc();
-            }
-        });
-        
-        // Close with escape key
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                if (lightbox.style.display === 'block') {
-                    closeLightboxFunc();
-                }
-                if (videoModal.style.display === 'block') {
-                    closeVideoModalFunc();
-                }
+                if (lightbox.style.display === 'block') closeLightboxFunc();
+                if (videoModal.style.display === 'block') closeVideoModalFunc();
             }
         });
         
-        // Initialize when DOM is ready
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                initGallery();
-                setupVideoTestimonials();
-            });
+            document.addEventListener('DOMContentLoaded', () => { initGallery(); setupVideoTestimonials(); });
         } else {
             initGallery();
             setupVideoTestimonials();
         }
-        
-        // Error handling
-        window.addEventListener('error', function(e) {
-            if (e.target.tagName === 'IMG') {
-                addDebugMessage(`🌐 Browser error: Failed to load ${e.target.src}`, true);
-            }
-        });
-        
     })();
 </script>
 </body>
